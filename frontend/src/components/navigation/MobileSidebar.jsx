@@ -1,10 +1,18 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FaUserCircle } from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
-import { BiSolidCategory } from "react-icons/bi";
+import { links } from '../../localData/navLinks';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
-const MobileSidebar = ({ sidebarOpen, toggleSidebar }) => {
+const MobileSidebar = ({ sidebarOpen, toggleSidebar, theme }) => {
+    const sidebarClasses = classNames(
+        'md:hidden fixed top-12 h-[92vh] w-48 z-50',
+        {
+            'bg-[#160121]' : theme === 'dark',
+            'bg-purple-50' : theme === 'light'
+        }
+    );
+
     return (
         <AnimatePresence>
             {sidebarOpen && (
@@ -25,19 +33,20 @@ const MobileSidebar = ({ sidebarOpen, toggleSidebar }) => {
                         opacity: 0,
                         x: '-100%'
                     }}
-                    className='md:hidden fixed top-14 h-full w-48 z-50 bg-gray-800 text-white'
+                    className={sidebarClasses}
                 >
                     <div className='p-4'>
-                        <ul className='mt-4 space-y-10'>
-                            <li onClick={toggleSidebar}>
-                                <span className='flex'><FaUserCircle size={30} className='mr-6' /> Profile</span>
-                            </li>
-                            <li onClick={toggleSidebar}>
-                                <span className='flex'><FaHome size={30} className='mr-6' /> Home</span>
-                            </li>
-                            <li onClick={toggleSidebar}>
-                                <span className='flex'><BiSolidCategory size={30} className='mr-6' /> Categories</span>
-                            </li>
+                        <ul className='mt-4 space-y-10 font-semibold'>
+                            {links.map((link) => (
+                                <li key={link.id} className={`links${theme === 'dark' ? '-dark' : ''} items-center`} onClick={toggleSidebar}>
+                                    <Link to={link.link}>
+                                        <span className='flex'>
+                                            <link.icon size={30} className='mr-6' />
+                                            <span>{link.name}</span>
+                                        </span>
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </motion.div>

@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Link hover styles*/
+.links:hover,
+.links-dark:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.links:hover {
+    color: rgb(107, 33, 168);
+}
+
+.links-dark:hover {
+    color: rgb(192, 132, 252);
+}

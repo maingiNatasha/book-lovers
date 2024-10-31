@@ -1,43 +1,34 @@
 import React from 'react';
-import { FaUserCircle } from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
-import { BiSolidCategory } from "react-icons/bi";
 import classNames from 'classnames';
+import { links } from '../../localData/navLinks';
+import { Link } from 'react-router-dom';
 
-const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
+const Sidebar = ({ sidebarOpen, theme }) => {
     const sidebarClasses = classNames(
-        'fixed top-14 left-0 h-full w-64 bg-gray-800 text-white transition-all ease-in-out duration-300 hidden md:block',
+        'flex flex-col h-[92vh] hidden md:block',
         {
-            'w-64': sidebarOpen,
-            'w-24': !sidebarOpen
+            'md:w-52 lg:w-64': sidebarOpen,
+            'w-20': !sidebarOpen
         }
     );
 
     return (
-        <aside className={sidebarClasses}>
-            <div className={`${sidebarOpen ? 'p-6' : 'p-5'}`}>
-                <ul className='mt-4 space-y-10'>
-                    <li>
-                        <span className='flex'>
-                            <FaUserCircle size={30} className='mr-6' />
-                            {sidebarOpen && <span>Profile</span>}
-                        </span>
-                    </li>
-                    <li>
-                        <span className='flex'>
-                            <FaHome size={30} className='mr-6' />
-                            {sidebarOpen && <span>Home</span>}
-                        </span>
-                    </li>
-                    <li>
-                        <span className='flex'>
-                            <BiSolidCategory size={30} className='mr-6' />
-                            {sidebarOpen && <span>Categories</span>}
-                        </span>
-                    </li>
+        <div className={sidebarClasses}>
+            <div className="pl-6 pt-6">
+                <ul className='mt-4 space-y-10 lg:text-lg font-semibold'>
+                    {links.map((link) => (
+                        <li key={link.id} className={`links${theme === 'dark' ? '-dark' : ''} items-center`}>
+                            <Link to={link.link}>
+                                <span className='flex'>
+                                    <link.icon size={30} className='mr-6' />
+                                    {sidebarOpen && <span>{link.name}</span>}
+                                </span>
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </div>
-        </aside>
+        </div>
     )
 };
 
