@@ -1,15 +1,18 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { links } from '../../localData/navLinks';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
 const MobileSidebar = ({ sidebarOpen, toggleSidebar, theme }) => {
+    const location = useLocation();
+    const currentPath = location.pathname;
+
     const sidebarClasses = classNames(
         'md:hidden fixed top-12 h-[92vh] w-48 z-50',
         {
-            'bg-[#160121]' : theme === 'dark',
-            'bg-purple-50' : theme === 'light'
+            'bg-gradient-to-r from-[#160121] to-black' : theme === 'dark',
+            'bg-gradient-to-r from-white via-purple-50 to-purple-100' : theme === 'light'
         }
     );
 
@@ -37,16 +40,22 @@ const MobileSidebar = ({ sidebarOpen, toggleSidebar, theme }) => {
                 >
                     <div className='p-4'>
                         <ul className='mt-4 space-y-10 font-semibold'>
-                            {links.map((link) => (
-                                <li key={link.id} className={`links${theme === 'dark' ? '-dark' : ''} items-center`} onClick={toggleSidebar}>
-                                    <Link to={link.link}>
-                                        <span className='flex'>
-                                            <link.icon size={30} className='mr-6' />
-                                            <span>{link.name}</span>
-                                        </span>
-                                    </Link>
-                                </li>
-                            ))}
+                            {links.map((link) => {
+                                const isActive = currentPath === link.link;
+                                const themeClass = theme === 'dark' ? 'links-dark' : 'links-light';
+                                const activeClass = isActive ? `active${theme === 'dark' ? '-dark' : '-light'}` : '';
+
+                                return (
+                                    <li key={link.id} className={`p-2 rounded-md ${themeClass} ${activeClass}`} onClick={toggleSidebar}>
+                                        <Link to={link.link}>
+                                            <span className='flex'>
+                                                <link.icon size={30} className='mr-6' />
+                                                <span>{link.name}</span>
+                                            </span>
+                                        </Link>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
                 </motion.div>

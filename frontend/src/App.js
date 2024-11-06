@@ -1,7 +1,7 @@
 import React, { useContext, lazy, Suspense} from "react";
 import { Routes, Route } from 'react-router-dom';
 import Loader from "./components/Loader";
-import { ThemeContext } from "./components/ThemeContext";
+import { ThemeContext } from "./components/theme/ThemeContext";
 import classNames from "classnames";
 
 const Profile = lazy(() => import("./components/profile/Profile"));

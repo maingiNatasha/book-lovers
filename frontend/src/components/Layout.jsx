@@ -12,7 +12,7 @@ const Layout = ({ theme, toggleTheme }) => {
     };
 
     return (
-        <div className='h-screen'>
+        <div className=''>
             <Header theme={theme} toggleTheme={toggleTheme} toggleSidebar={toggleSidebar} />
             <div className='md:flex'>
                 <Sidebar sidebarOpen={sidebarOpen} theme={theme} />
