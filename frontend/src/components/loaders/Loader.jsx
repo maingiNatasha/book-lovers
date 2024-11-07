@@ -5,7 +5,7 @@ const Loader = () => {
     return (
         <div className='flex flex-col items-center justify-center min-h-screen'>
             <FallingLines
-                color="#350764"
+                color="#581C87"
                 width="100"
                 visible={true}
                 ariaLabel="falling-circles-loading"

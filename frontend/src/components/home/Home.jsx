@@ -1,8 +1,16 @@
 import React from 'react';
 import Lottie from 'lottie-react';
 import bookAnimation from '../../animations/Animation - 1730890958132.json';
+import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    const navigate = useNavigate();
+
+    const handleClick= () => {
+        navigate('/categories');
+    };
+
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 md:gap-4'>
             <div className='flex flex-col justify-center sm:px-14 md:px-8 lg:px-0'>
@@ -27,10 +35,13 @@ const Home = () => {
                         </li>
                     </ul>
                 </section>
-                <section >
+                <section>
                     <p className="text-xl md:text-2xl lg:text-3xl font-semibold my-4">Ready to dive into a world of books?</p>
                     <div className='flex justify-center md:block'>
-                        <button className='bg-purple-300 dark:bg-purple-700 rounded-md px-4 py-2 font-bold' aria-label='Discover Books'>Discover more</button>
+                        <button className='bg-purple-300 dark:bg-purple-700 rounded-md px-4 py-2 font-bold flex items-center' aria-label='Discover Books' onClick={handleClick}>
+                            <span>Discover more</span>
+                            <FaArrowRight className='ml-2' />
+                        </button>
                     </div>
                 </section>
             </div>

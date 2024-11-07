@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import BookCard from '../book/BookCard';
+import ContentLoader from '../loaders/ContentLoader';
 
 const PopularBooks = () => {
     const [books, setBooks] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -10,8 +14,11 @@ const PopularBooks = () => {
                 const response = await axios.get('http://localhost:5000/api/books/popular');
                 setBooks(response.data);
                 console.log(response.data);
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching books: ', error);
+                setError('Error fetching books: ');
+                setLoading(false);
             }
         };
 
@@ -19,17 +26,23 @@ const PopularBooks = () => {
     }, []);
 
     return (
-        <div>
-            <h1 className='text-4xl'>Popular Books</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                {books.map((book) => (
-                    <div key={book.key} className=''>
-                        <img src={`https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg`} alt={book.title} loading='lazy' className='w-full object-cover mb-2' />
-                        <h3 className='font-bold'>{book.title}</h3>
-                        <p>{book.authors ? book.authors.map(author => author.name).join(', ')  : 'Unknown Author'}</p>
-                    </div>
-                ))}
-            </div>
+        <div className='px-5 sm:px-14 md:px-0 lg:px-14'>
+            <h1 className='text-3xl font-bold'>Popular Books</h1>
+            {loading ? (
+                <div>
+                    <ContentLoader/>
+                </div>
+            ) : error ? (
+                <div className=''>
+                    <h3 className='font-bold text-lg'>Error: {error}</h3>
+                </div>
+            ) : (
+                <div className='mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-4 lg:gap-12'>
+                    {books.map((book) => (
+                        <BookCard book={book} />
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

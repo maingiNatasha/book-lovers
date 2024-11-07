@@ -1,6 +1,6 @@
 import React, { useContext, lazy, Suspense} from "react";
 import { Routes, Route } from 'react-router-dom';
-import Loader from "./components/Loader";
+import Loader from "./components/loaders/Loader";
 import { ThemeContext } from "./components/theme/ThemeContext";
 import classNames from "classnames";
 

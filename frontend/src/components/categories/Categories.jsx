@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import PopularBooks from './PopularBooks';
 
 const Categories = () => {
     return (
-        <div>Categories</div>
+        <div>
+            <PopularBooks />
+        </div>
     )
 }
 

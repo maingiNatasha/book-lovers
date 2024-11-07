@@ -16,7 +16,7 @@ const Layout = ({ theme, toggleTheme }) => {
             <Header theme={theme} toggleTheme={toggleTheme} toggleSidebar={toggleSidebar} />
             <div className='md:flex'>
                 <Sidebar sidebarOpen={sidebarOpen} theme={theme} />
-                <main className='p-6 md:py-10 md:px-10 lg:px-20'>
+                <main className='flex-1 p-6 md:py-10 md:px-10 lg:px-20'>
                     {/* Render child route elements */}
                     <Outlet />
                 </main>
