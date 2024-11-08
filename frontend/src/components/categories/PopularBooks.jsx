@@ -39,7 +39,7 @@ const PopularBooks = () => {
             ) : (
                 <div className='mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-4 lg:gap-12'>
                     {books.map((book) => (
-                        <BookCard book={book} />
+                        <BookCard book={book} key={book.key} />
                     ))}
                 </div>
             )}

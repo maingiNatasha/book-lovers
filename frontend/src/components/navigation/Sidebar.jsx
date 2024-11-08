@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { links } from '../../localData/navLinks';
 import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = ({ sidebarOpen, theme }) => {
+const Sidebar = ({ sidebarOpen, theme, sidebarRef }) => {
     const location = useLocation();
     const currentPath = location.pathname;
 
@@ -16,7 +16,7 @@ const Sidebar = ({ sidebarOpen, theme }) => {
     );
 
     return (
-        <div className={sidebarClasses}>
+        <div ref={sidebarRef} className={sidebarClasses}>
             <div className="pl-6 pt-6">
                 <ul className='mt-4 space-y-10 font-semibold'>
                     {links.map((link) => {

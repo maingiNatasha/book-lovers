@@ -4,7 +4,7 @@ import { MdDarkMode } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
 import classNames from 'classnames';
 
-const Header = ({ theme, toggleTheme, toggleSidebar }) => {
+const Header = ({ theme, toggleTheme, toggleSidebar, hamburgerButtonRef }) => {
     const headerClasses = classNames(
         'sticky top-0 z-10 bg-white flex justify-between items-center h-[8vh] px-6 py-4 shadow-md',
         {
@@ -16,7 +16,7 @@ const Header = ({ theme, toggleTheme, toggleSidebar }) => {
     return (
         <header className={headerClasses}>
             <div className='flex space-x-6'>
-                <button onClick={toggleSidebar} aria-label='Toggle sidebar'>
+                <button ref={hamburgerButtonRef} onClick={toggleSidebar} aria-label='Toggle sidebar'>
                     <GiHamburgerMenu size={30} />
                 </button>
                 <h1 className='font-bold text-2xl'>Title</h1>
