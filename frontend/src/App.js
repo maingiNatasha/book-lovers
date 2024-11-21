@@ -1,16 +1,18 @@
-import React, { useContext, lazy, Suspense} from "react";
+import React, { lazy, Suspense } from "react";
 import { Routes, Route } from 'react-router-dom';
 import Loader from "./components/loaders/Loader";
-import { ThemeContext } from "./components/theme/ThemeContext";
 import classNames from "classnames";
+import { SidebarProvider } from "./components/contexts/SidebarContext";
+import { useTheme } from "./components/contexts/ThemeContext";
 
 const Profile = lazy(() => import("./components/profile/Profile"));
 const Home = lazy(() => import("./components/home/Home"));
 const Categories = lazy(() => import("./components/categories/Categories"));
-const Layout = lazy(() => import("./components/Layout"));
+const Layout = lazy(() => import("./components/layouts/Layout"));
 
 function App() {
-	const { theme, toggleTheme } = useContext(ThemeContext);
+	const { theme } = useTheme();
+
 	const themeClasses = classNames(
 		'min-h-screen',
 		{
@@ -21,19 +23,21 @@ function App() {
 
 	return (
 		<div className={themeClasses}>
-			<Suspense fallback={<Loader />}>
-				<div>
-					<Routes>
-						{/* Parent route */}
-					    <Route path="/" element={<Layout theme={theme} toggleTheme={toggleTheme}  />}>
-							{/* Child routes */}
-							<Route index element={<Home />} />
-							<Route path="profile" element={<Profile />} />
-							<Route path="categories" element={<Categories />} />
-						</Route>
-                    </Routes>
-				</div>
-			</Suspense>
+			<SidebarProvider>
+				<Suspense fallback={<Loader />}>
+					<div>
+						<Routes>
+							{/* Parent route */}
+							<Route path="/" element={<Layout />}>
+								{/* Child routes */}
+								<Route index element={<Home />} />
+								<Route path="profile" element={<Profile />} />
+								<Route path="categories" element={<Categories />} />
+							</Route>
+						</Routes>
+					</div>
+				</Suspense>
+			</SidebarProvider>
 		</div>
 	);
 };

@@ -1,9 +1,9 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Create context
-export const ThemeContext = createContext();
+const ThemeContext = createContext();
 
-const ThemeProvider = ({ children }) => {
+export const ThemeProvider = ({ children }) => {
     const[theme, setTheme] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
         return savedTheme ? savedTheme : 'light';
@@ -30,4 +30,5 @@ const ThemeProvider = ({ children }) => {
     );
 };
 
-export default ThemeProvider;
+// Create a custom hook to use the context
+export const useTheme = () => useContext(ThemeContext);

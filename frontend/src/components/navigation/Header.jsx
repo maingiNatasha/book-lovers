@@ -3,8 +3,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
 import classNames from 'classnames';
+import { useSidebar } from '../contexts/SidebarContext';
+import { useTheme } from "../contexts/ThemeContext";
 
-const Header = ({ theme, toggleTheme, toggleSidebar, hamburgerButtonRef }) => {
+const Header = ({ hamburgerButtonRef }) => {
+    const { theme, toggleTheme } = useTheme();
+    const { toggleSidebar } = useSidebar();
+
     const headerClasses = classNames(
         'sticky top-0 z-10 bg-white flex justify-between items-center h-[8vh] px-6 py-4 shadow-md',
         {
