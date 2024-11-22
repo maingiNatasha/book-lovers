@@ -9,7 +9,7 @@ const Sidebar = ({ sidebarRef }) => {
     const sidebarClasses = classNames(
         'flex flex-col h-[92vh] hidden md:block sticky top-14',
         {
-            'md:w-52 lg:w-64': sidebarOpen,
+            'md:w-52 lg:w-60': sidebarOpen,
             'w-20': !sidebarOpen
         }
     );

@@ -10,7 +10,7 @@ const Home = lazy(() => import("./components/home/Home"));
 const Categories = lazy(() => import("./components/categories/Categories"));
 const Layout = lazy(() => import("./components/layouts/Layout"));
 
-function App() {
+const App = () => {
 	const { theme } = useTheme();
 
 	const themeClasses = classNames(

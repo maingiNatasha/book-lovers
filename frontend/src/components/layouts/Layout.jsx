@@ -3,17 +3,27 @@ import { Outlet } from 'react-router-dom';
 import Header from '../navigation/Header';
 import Sidebar from '../navigation/Sidebar';
 import MobileSidebar from '../navigation/MobileSidebar';
+import { useSidebar } from '../contexts/SidebarContext';
+import classNames from 'classnames';
 
 const Layout = () => {
     const hamburgerButtonRef = useRef(null);
     const sidebarRef = useRef(null);
+
+    const { sidebarOpen } = useSidebar();
 
     return (
         <div className=''>
             <Header hamburgerButtonRef={hamburgerButtonRef} />
             <div className='md:flex'>
                 <Sidebar sidebarRef={sidebarRef} />
-                <main className='flex-1 p-6 md:py-10 md:px-10 lg:px-20'>
+                <main className={classNames(
+                    'flex-1 p-6 md:py-10',
+                    {
+                        'md:px-5' : sidebarOpen,
+                        'md:px-10' : !sidebarOpen
+                    }
+                )}>
                     {/* Render child route elements */}
                     <Outlet />
                 </main>
