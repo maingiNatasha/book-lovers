@@ -83,8 +83,3 @@ body {
 .active-light:hover, .active-dark:hover {
     color: black;
 }
-
-.animation {
-    width: 600px;
-    height: 600px;
-}

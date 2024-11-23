@@ -24,7 +24,7 @@ const Header = ({ hamburgerButtonRef }) => {
                 <button ref={hamburgerButtonRef} onClick={toggleSidebar} aria-label='Toggle sidebar'>
                     <GiHamburgerMenu size={30} />
                 </button>
-                <h1 className='font-bold text-2xl'>Title</h1>
+                <h1 className='font-extrabold text-2xl'>Book Hub</h1>
             </div>
             <button onClick={toggleTheme} aria-label='Toggle Theme'>
                 {theme === 'dark' ? <MdDarkMode size={30} /> : <MdOutlineLightMode size={30} /> }

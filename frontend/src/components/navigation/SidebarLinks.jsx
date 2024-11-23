@@ -30,8 +30,8 @@ const SidebarLinks = () => {
                     >
                         <Link to={link.link}>
                             <span className='flex'>
-                                <link.icon size={30} className={sidebarOpen ? 'mr-6' : ''} />
-                                <span className={`block md:hidden ${sidebarOpen ? '' : 'ml-6'}`}>{link.name}</span>
+                                <link.icon size={30} className={sidebarOpen ? 'mr-4' : ''} />
+                                <span className={`block md:hidden ${sidebarOpen ? '' : 'ml-4'}`}>{link.name}</span>
                                 {sidebarOpen && <span className='hidden md:block'>{link.name}</span>}
                             </span>
                         </Link>

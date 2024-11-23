@@ -20,8 +20,8 @@ const Layout = () => {
                 <main className={classNames(
                     'flex-1 p-6 md:py-10',
                     {
-                        'md:px-5' : sidebarOpen,
-                        'md:px-10' : !sidebarOpen
+                        'md:px-5 xl:px-10' : sidebarOpen,
+                        'md:px-10 xl:px-20' : !sidebarOpen
                     }
                 )}>
                     {/* Render child route elements */}

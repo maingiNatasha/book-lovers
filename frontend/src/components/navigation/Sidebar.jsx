@@ -9,11 +9,10 @@ const Sidebar = ({ sidebarRef }) => {
     const sidebarClasses = classNames(
         'flex flex-col h-[92vh] hidden md:block sticky top-14',
         {
-            'md:w-52 lg:w-60': sidebarOpen,
+            'md:w-52 lg:w-56 xl:w-60': sidebarOpen,
             'w-20': !sidebarOpen
         }
     );
-
 
     return (
         <div ref={sidebarRef} className={sidebarClasses}>

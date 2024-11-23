@@ -5,6 +5,7 @@ import useClickOutside from '../custom_hooks/useClickOutside';
 import { useSidebar } from '../contexts/SidebarContext';
 import { useTheme } from "../contexts/ThemeContext";
 import SidebarLinks from './SidebarLinks';
+import SlideInDiv from '../animated-containers/SlideInDiv';
 
 const MobileSidebar = ({ hamburgerButtonRef, sidebarRef }) => {
     const MobileSidebarRef = useRef(null);
@@ -12,7 +13,7 @@ const MobileSidebar = ({ hamburgerButtonRef, sidebarRef }) => {
     const { theme } = useTheme();
 
     const sidebarClasses = classNames(
-        'md:hidden fixed top-14 h-[92vh] w-48 z-50',
+        'md:hidden fixed top-14 h-[92vh] w-56 z-50',
         {
             'bg-gradient-to-r from-[#160121] to-black' : theme === 'dark',
             'bg-gradient-to-r from-white via-purple-50 to-purple-100' : theme === 'light'
@@ -48,7 +49,9 @@ const MobileSidebar = ({ hamburgerButtonRef, sidebarRef }) => {
                     className={sidebarClasses}
                 >
                     <div className='p-4'>
-                        <SidebarLinks />
+                        <SlideInDiv>
+                            <SidebarLinks />
+                        </SlideInDiv>
                     </div>
                 </motion.div>
             )}
