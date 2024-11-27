@@ -1,18 +1,27 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
+const errorHandler = require('./middleware/errorMiddleware');
+const connectDB = require('./config/db');
 
+const port = process.env.PORT || 5000;
+connectDB();
 const app = express();
-const bookRoutes = require('./routes/books');
-
-// Middleware to parse JSON bodies
-app.use(express.json());
 
 // Enable CORS for cross-origin requests
 app.use(cors());
 
-// Routes
-app.use('/api/books', bookRoutes);
+// Middleware to parse JSON bodies
+app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Middleware to parse URL-encoded bodies e.g forms
+app.use(express.urlencoded({ extended: false }));
+
+// Routes
+app.use('/api/books', require('./routes/books'));
+app.use('/api/user', require('./routes/userRoutes'));
+
+// Error handling middleware
+app.use(errorHandler);
+
+app.listen(port, () => console.log(`Server started on port ${port}`));
